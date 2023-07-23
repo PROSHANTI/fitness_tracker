@@ -89,14 +89,11 @@ class SportsWalking(Training):
 
     def get_spent_calories(self) -> float:
         """Получить калории."""
-        return ((self.SW_COEF_1 * self.weight
-                + ((self.get_mean_speed()
-                * self.KMH_IN_MSEC) ** 2
-                / (self.height
-                / self.CM_IN_M))
-                * self.SW_COEF_2
-                * self.weight)
-                * self.duration * self.M_IN_HOUR)
+        return ((self.SW_COEF_1 * self.weight + ((self.get_mean_speed()
+                * self.KMH_IN_MSEC) ** 2 / (self.height / self.CM_IN_M))
+            * self.SW_COEF_2
+            * self.weight)
+            * self.duration * self.M_IN_HOUR)
 
 
 class Swimming(Training):
@@ -119,18 +116,13 @@ class Swimming(Training):
 
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
-        return (self.length_pool
-                * self.count_pool
-                / self.M_IN_KM
-                / self.duration)
+        return (self.length_pool * self.count_pool
+                / self.M_IN_KM / self.duration)
 
     def get_spent_calories(self) -> float:
         """Получить калории."""
-        return ((self.get_mean_speed()
-                 + self.SWIM_COEF_1)
-                 * self.SWIM_COEF_2
-                 * self.weight
-                 * self.duration)
+        return ((self.get_mean_speed() + self.SWIM_COEF_1) * self.SWIM_COEF_2
+                * self.weight * self.duration)
 
 
 def read_package(workout_type: str, data: list) -> Training:
