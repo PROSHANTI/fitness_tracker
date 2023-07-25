@@ -130,6 +130,8 @@ class Swimming(Training):
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
     work_type = {'SWM': Swimming, 'RUN': Running, 'WLK': SportsWalking}
+    if workout_type not in work_type:
+        raise ValueError("Неизвестная тренировка, разработка в процессе...")
     return work_type[workout_type](*data)
 
 
