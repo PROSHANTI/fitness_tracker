@@ -138,7 +138,7 @@ def read_package(workout_type: str, data: list) -> Training:
     correct_workout = work_type.get(workout_type)
     if not correct_workout:
         raise KeyError(f'Неверный тип тренировки: {workout_type}')
-    return work_type.get(workout_type)(*data)
+    return correct_workout(*data)
 
 
 def main(training: Training) -> None:
