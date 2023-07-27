@@ -130,10 +130,15 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    work_type = {'SWM': Swimming, 'RUN': Running, 'WLK': SportsWalking}
-    if workout_type not in work_type:
-        raise ValueError("Неизвестная тренировка, разработка в процессе...")
-    return work_type[workout_type](*data)
+    work_type = {'SWM': Swimming,
+                 'RUN': Running,
+                 'WLK': SportsWalking}
+
+    # Проверяем корректность типа тренировки
+    correct_workout = work_type.get(workout_type)
+    if not correct_workout:
+        raise KeyError(f'Неверный тип тренировки: {workout_type}')
+    return work_type.get(workout_type)(*data)
 
 
 def main(training: Training) -> None:
